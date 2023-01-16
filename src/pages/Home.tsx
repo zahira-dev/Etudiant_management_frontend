@@ -1,18 +1,16 @@
-/* eslint-disable no-shadow */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-array-index-key */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import Layout from "../components/Layout";
-import StudentsList from "../components/StudentsList";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+import Layout from '../components/Layout';
+import StudentsList from '../components/StudentsList';
 
 function Home() {
   const navigate = useNavigate();
   const [users, setusers] = useState([]);
   const loadStudents = async () => {
-    const response = await axios.get("http://localhost:8081/students");
+    const response = await axios.get('http://localhost:8081/students');
     setusers(response.data);
   };
   useEffect(() => {
@@ -25,9 +23,9 @@ function Home() {
         <button
           type="button"
           style={{ marginBottom: 30, marginLeft: 2 }}
-          onClick={() => navigate("/new")}
+          onClick={() => navigate('/new')}
         >
-          {" "}
+          {' '}
           Ajouter un nouveau Etudiant
         </button>
       </div>

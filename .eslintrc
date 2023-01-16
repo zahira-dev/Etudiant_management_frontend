@@ -1,11 +1,15 @@
 {
-  "extends": ["plugin:prettier/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "overrides": [
     // Configuration for TypeScript files
     {
       "files": ["**/*.ts", "**/*.tsx"],
-      "plugins": ["@typescript-eslint", "unused-imports"],
-      "extends": ["plugin:prettier/recommended"],
+      "plugins": ["prettier", "@typescript-eslint", "unused-imports", "import"],
+      "extends": ["plugin:prettier/recommended", "plugin:import/recommended"],
       "parserOptions": {
         "project": "./tsconfig.json"
       },
@@ -14,14 +18,14 @@
         "prettier/prettier": [
           "error",
           {
-            "singleQuote": true
+            "singleQuote": true,
+            "endOfLine": "auto"
           }
         ],
         "react/destructuring-assignment": "off", // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
         "jsx-a11y/anchor-is-valid": "off", // Next.js use his own internal link system
         "react/require-default-props": "off", // Allow non-defined react props as undefined
-        "react/jsx-props-no-spreading": "off", // _app.tsx uses spread operator and also, react-hook-form
-        "@next/next/no-img-element": "warn", // We currently not using next/image because it isn't supported with SSG mode
+        "react/jsx-props-no-spreading": "off", // _app.tsx uses spread operator and also, react-hook-form // We currently not using next/image because it isn't supported with SSG mode
         "import/order": [
           "error",
           {
@@ -49,7 +53,19 @@
           "error",
           { "argsIgnorePattern": "^_" }
         ]
+      },
+      "parser": "@typescript-eslint/parser"
+    }
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
-  ]
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  }
 }

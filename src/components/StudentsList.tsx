@@ -1,18 +1,19 @@
-/* eslint-disable react/prop-types */
-import axios from 'axios';
+import React from 'react';
 
+import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+
 import { Student } from '../types/student';
-interface StudentListProps{
-   user: Student
-    loadStudents :()=>void
+interface StudentListProps {
+  user: Student;
+  loadStudents: () => void;
 }
-function StudentsList({ user, loadStudents }:StudentListProps) {
+function StudentsList({ user, loadStudents }: StudentListProps) {
   const navigate = useNavigate();
-  const deleteStudent = async (id:Student['id']) => {
+  const deleteStudent = async (id: Student['id']) => {
     const response = await axios.delete(`http://localhost:8081/students/${id}`);
-    console.log('data', response);
+
     if (response.status === 200) {
       toast.success('Successfully deleted!');
       loadStudents();
@@ -23,51 +24,39 @@ function StudentsList({ user, loadStudents }:StudentListProps) {
 
   return (
     <>
-
-      <div>
-        Nom & Prénom :
-        {' '}
-        {user.firstName}
-        {' '}
-
-      </div>
-      <div>
-        Option:
-        {' '}
-        {user.option}
-      </div>
-      <div>
-        Note:
-        {' '}
-        {user.mark}
-      </div>
-      <div>
-        {user.mention}
-      </div>
+      <div>Nom & Prénom : {user.firstName} </div>
+      <div>Option: {user.option}</div>
+      <div>Note: {user.mark}</div>
+      <div>{user.mention}</div>
       <div>
         {' '}
-        <button style={{ marginLeft: 2 }} type="button" onClick={() => navigate(`students/${user.id}`)}> Voir les informations</button>
-        {' '}
+        <button
+          style={{ marginLeft: 2 }}
+          type="button"
+          onClick={() => navigate(`students/${user.id}`)}
+        >
+          {' '}
+          Voir les informations
+        </button>{' '}
         <button
           type="button"
           style={{ marginLeft: 2 }}
           onClick={() => navigate(`edit/${user.id}`)}
         >
           {' '}
-          Modifier
-          {' '}
-
+          Modifier{' '}
         </button>
-        <button type="button" style={{ marginLeft: 2 }} onClick={() => deleteStudent(user.id)}>
-          Supprimer
-          {' '}
-
+        <button
+          type="button"
+          style={{ marginLeft: 2 }}
+          onClick={() => deleteStudent(user.id)}
+        >
+          Supprimer{' '}
         </button>
       </div>
 
       <div />
     </>
-
   );
 }
 

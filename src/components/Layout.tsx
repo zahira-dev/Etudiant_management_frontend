@@ -1,8 +1,6 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
-import { PropsWithChildren } from "react";
+import { PropsWithChildren } from 'react';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 interface LayoutProps {
   title?: string;
 }
