@@ -13,10 +13,6 @@ function NewStudent() {
   const [mark, setMark] = useState<number>(0);
   const [option, selectedOption] = useState<string>('');
   const addStudent = async () => {
-    console.log(firstName);
-    console.log(mark);
-    console.log('jsonn', JSON.stringify({ firstName, mark, option }));
-
     try {
       const response = await axios.post('http://localhost:8081/students/new', {
         firstName,
@@ -27,7 +23,6 @@ function NewStudent() {
       toast.success('Successfully added!');
       navigate('/');
     } catch (error) {
-      console.log('stqtus', error);
       toast.error('cant add this object: ' + error.response.data.message);
     }
   };
@@ -36,11 +31,8 @@ function NewStudent() {
     event
   ) => {
     setFirstName(event.target.value);
-    console.log(event.target.value);
   };
   const handleOption: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
-    console.log('Label ', event.target.selectedOptions[0].label);
-    console.log(event.target.value);
     selectedOption(event.target.value);
   };
   const handleChangeMark: React.ChangeEventHandler<HTMLInputElement> = (

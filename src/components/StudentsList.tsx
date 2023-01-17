@@ -4,11 +4,13 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
-import { Student } from '../types/student';
+import { Student } from 'src/interfaces/Student';
+
 interface StudentListProps {
   user: Student;
   loadStudents: () => void;
 }
+
 function StudentsList({ user, loadStudents }: StudentListProps) {
   const navigate = useNavigate();
   const deleteStudent = async (id: Student['id']) => {
@@ -56,6 +58,7 @@ function StudentsList({ user, loadStudents }: StudentListProps) {
       </div>
 
       <div />
+      <div style={{ height: 400, width: '100%' }}></div>
     </>
   );
 }

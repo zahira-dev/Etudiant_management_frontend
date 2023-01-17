@@ -45,6 +45,7 @@
             }
           }
         ],
+        "import/named": "off",
         "import/prefer-default-export": "off", // Named export is easier to refactor automatically
         "class-methods-use-this": "off", // _document.tsx use render method without `this` keyword
         "@typescript-eslint/no-unused-vars": "off",
@@ -61,7 +62,12 @@
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
+      },
+
+      "typescript": {}
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     }
   },
   "env": {
